@@ -234,6 +234,8 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1245255911463916, guid: cac9529f18d7fd544931fd69f61de91c,
     type: 2}
   cloneSpawn: {fileID: 1434207919}
+  cellRadius: 10
+  playerRadius: 0.7
   exitTweenTime: 3
 --- !u!114 &184193354
 MonoBehaviour:
@@ -8235,7 +8237,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh21314
+  m_Name: pb_Mesh15190
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2

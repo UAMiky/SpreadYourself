@@ -18,6 +18,12 @@ public class CellBehaviour : MonoBehaviour
     Transform cloneSpawn;
 
     [SerializeField]
+    float cellRadius = 10;
+
+    [SerializeField]
+    float playerRadius = 0.5f;
+
+    [SerializeField]
     float exitTweenTime = 2;
 
     #region Internal Vars
@@ -49,6 +55,7 @@ public class CellBehaviour : MonoBehaviour
             this.Enemies.Add(newEnemy);
 
             // Initialize enemy
+            newEnemy.GetComponent<CellEnemyBehaviour>().Activate(this.player, this.cellRadius, this.playerRadius);
         }
     }
 
@@ -71,7 +78,11 @@ public class CellBehaviour : MonoBehaviour
         this.enabled = false;
 
         // Kill all enemies
-        InstanceManager.Instance.ReturnAll(this.Enemies);
+        foreach(var enemy in Enemies)
+        {
+            enemy.GetComponent<CellEnemyBehaviour>().Deactivate();
+            InstanceManager.Instance.InstanceReturn(enemy);
+        }
 
         // Deactivate all exits
         foreach (var exit in Exits)
@@ -86,7 +97,6 @@ public class CellBehaviour : MonoBehaviour
                 clone.GetComponent<VirusCloneBehaviour>().Deactivate();
                 InstanceManager.Instance.InstanceReturn(clone);
             }
-            InstanceManager.Instance.ReturnAll(this.Clones);
 
             var nextCell = this.PlayerExited();
             if(nextCell)
