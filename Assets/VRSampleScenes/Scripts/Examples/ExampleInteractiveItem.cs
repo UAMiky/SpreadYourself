@@ -23,7 +23,6 @@ namespace VRStandardAssets.Examples
             m_Renderer.material = m_NormalMaterial;
         }
 
-
         private void OnEnable()
         {
             m_InteractiveItem.OnOver += HandleOver;
@@ -65,7 +64,7 @@ namespace VRStandardAssets.Examples
             m_Renderer.material = m_ClickedMaterial;
 
             
-            cam.DOMove(new Vector3(transform.position.x,transform.position.y,transform.position.z), 4f).SetEase(Ease.InOutSine);
+            cam.DOMove(transform.position, 4f).SetEase(Ease.InOutSine).OnComplete(()=>Debug.Log("Se ejecuto el doTween"));
 
         }
 
