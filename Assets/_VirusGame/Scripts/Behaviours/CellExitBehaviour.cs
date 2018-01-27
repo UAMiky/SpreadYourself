@@ -10,13 +10,10 @@ public class CellExitBehaviour : MonoBehaviour
     public Transform tweenPoint;
 
     private CellBehaviour parent;
-    private VRInteractiveItem vr;
+    private VRInteractiveItem _vr;
     bool activated;
 
-    private void Awake()
-    {
-        vr = GetComponent<VRInteractiveItem>();
-    }
+    private VRInteractiveItem vr { get { return _vr ?? (_vr = GetComponent<VRInteractiveItem>()); } }
 
     public void Activate (CellBehaviour caller)
     {

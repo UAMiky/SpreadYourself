@@ -19,6 +19,6 @@ public class CellEnemyBehaviour : MonoBehaviour
 
     public void Deactivate ()
     {
-        this.transform.DOComplete();
+        this.transform.DOKill();
     }
 }

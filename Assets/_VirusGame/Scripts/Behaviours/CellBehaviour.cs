@@ -29,6 +29,8 @@ public class CellBehaviour : MonoBehaviour
     #region Internal Vars
 
     private Transform player;
+    private Vector3 playerOriginalPosition;
+    private Quaternion playerOriginalRotation;
     private List<CellExitBehaviour> Exits = new List<CellExitBehaviour>();
     private List<GameObject> Enemies = new List<GameObject>();
     private List<GameObject> Clones = new List<GameObject>();
@@ -38,6 +40,7 @@ public class CellBehaviour : MonoBehaviour
     void Awake ()
     {
         this.enabled = false;
+        this.gameObject.SetActive(false);
         this.GetComponentsInChildren<CellExitBehaviour>(this.Exits);
 	}
 	
@@ -75,8 +78,6 @@ public class CellBehaviour : MonoBehaviour
 
     public void Exit (Transform tweenDestination)
     {
-        this.enabled = false;
-
         // Kill all enemies
         foreach(var enemy in Enemies)
         {
@@ -105,7 +106,12 @@ public class CellBehaviour : MonoBehaviour
             }
             else
             {
-                // TODO: Volver al carril
+                // Volver al carril
+                this.gameObject.SetActive(false);
+                this.player.position = this.playerOriginalPosition;
+                this.player.rotation = this.playerOriginalRotation;
+                this.player.DOTogglePause();
+                this.enabled = false;
             }
         });
     }
@@ -125,7 +131,16 @@ public class CellBehaviour : MonoBehaviour
             this.Exits[i].Activate(this);
 
         this.player = playerTrans;
+        if (this.enabled == false)
+        {
+            this.player.DOTogglePause();
+            this.playerOriginalPosition = this.player.position;
+            this.playerOriginalRotation = this.player.rotation;
+        }
+
+        this.gameObject.SetActive(true);
         this.player.position = this.transform.position;
+        this.player.rotation = this.transform.rotation;
         this.definition.enemiesSpawnConfig.Init();
         this.definition.clonesSpawnConfig.Init();
         this.enabled = true;
