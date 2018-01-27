@@ -6,9 +6,8 @@ using DG.Tweening;
 public class ControllerOffset : MonoBehaviour {
 
     public float fuerzaSalto=2f;
-    public float maxDistance = 2f;
+    public float moveSpeed = 2f;
     Vector3 target;
-
     Rigidbody rgbd;
     public Transform cam;
     
@@ -17,6 +16,7 @@ public class ControllerOffset : MonoBehaviour {
     {
         rgbd = GetComponent<Rigidbody>();
         cam = Camera.main.GetComponent<Transform>();
+        target = Vector3.zero;
     }
     private void Start()
     {        
@@ -28,12 +28,17 @@ public class ControllerOffset : MonoBehaviour {
        // if (transform.localPosition == Vector3.zero)
         {
 
-            transform.localPosition = Vector3.Lerp(transform.localPosition, target, Time.deltaTime);
-
-            if (transform.localPosition == target)
+            var dist = target - transform.localPosition;
+            if (dist.sqrMagnitude > 0.01)
             {
+                transform.localPosition = Vector3.Lerp(transform.localPosition, target, Time.deltaTime * moveSpeed);
+            }
+            else
+            {
+                transform.localPosition = target;
                 target = Vector3.zero;
             }
+
             if (Input.GetButtonDown("Fire1"))
             {
 
