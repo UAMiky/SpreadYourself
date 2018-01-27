@@ -5,11 +5,21 @@ using DG.Tweening;
 
 public class ManagerPath : MonoBehaviour {
 
+    public static ManagerPath instance;
 
     public Transform contentCamera;
     public Transform[] pointsMove;
 
-    public List<Carril> carrilesCompletos;
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.Log("ya existe una clase instanciada");
+        }else
+        {
+            instance = this;
+        }
+    }
 
     private void Start()
     {
@@ -18,30 +28,13 @@ public class ManagerPath : MonoBehaviour {
         {
             vectorMove[i]= pointsMove[i].position;
         }
-        contentCamera.DOPath(vectorMove, 10f).SetEase(Ease.InOutSine);   
+        NextCarril(vectorMove);   
     }
 
-    public void  NextDirection(int [] indexCarriles)
+  public void NextCarril(Vector3[] nextArrayVector,float delay=0)
     {
-       for(int i=0; i < carrilesCompletos.Count; i++)
-        {
-            for (int x = 0; x < indexCarriles.Length; x++)
-            {
-              
-            }
-        }
+        contentCamera.DOPath(nextArrayVector, 10f,PathType.CatmullRom).SetEase(Ease.Linear).SetDelay(delay);
     }
 
 }
 
-[System.Serializable]
-public class Carril
-{
-    public List<Puntos> carriles;
-}
-
-[System.Serializable]
-public class Puntos
-{
-    public Transform point;
-}
