@@ -235,7 +235,7 @@ MonoBehaviour:
     type: 2}
   cloneSpawn: {fileID: 1434207919}
   cellRadius: 10
-  playerRadius: 0.7
+  playerRadius: 0.4
   exitTweenTime: 3
 --- !u!114 &184193354
 MonoBehaviour:
@@ -8107,7 +8107,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh21372
+  m_Name: pb_Mesh15220
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -8237,7 +8237,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh15190
+  m_Name: pb_Mesh15188
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2

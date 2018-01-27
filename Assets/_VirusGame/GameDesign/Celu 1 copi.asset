@@ -19,3 +19,5 @@ MonoBehaviour:
     firstSpawnTime: 1
     nextSpawnTime: 2
     maxSpawnNumber: 1
+  exitCell: {fileID: 11400000}
+  maxExits: 3
