@@ -32,6 +32,7 @@ public class CellExitBehaviour : MonoBehaviour
     {
         //playAudio
         ManagerAudioEffect.instance.ReproducirAbrir();
+        ManagerAudioEffect.instance.ReproducirRiegoSanguineo(false);
 
         parent.Exit(tweenPoint ? tweenPoint : transform);
     }

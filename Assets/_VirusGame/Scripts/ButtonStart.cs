@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using VRStandardAssets.Utils;
+using DG.Tweening;
 
 public class ButtonStart : MonoBehaviour {
 
@@ -10,12 +11,14 @@ public class ButtonStart : MonoBehaviour {
     private void Awake()
     {
         vrInteractive.OnClick += onclick;
+        transform.DOScale(Vector3.one * 1.3f, 1f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
     }
 
     private void onclick()
     {
         VRCameraFade.Instance.FadeIn(true);
         ManagerPath.instance.iniciar();
+        ManagerAudioEffect.instance.ReproducirClickButton();
         Destroy(gameObject);
     }
 }

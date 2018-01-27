@@ -10,9 +10,11 @@ public class ManagerAudioEffect : MonoBehaviour {
     public AudioClip clipAbrirMembrana;
     public AudioClip clipCerrarMembrana;
     public AudioClip clipRiegoSan;
+    public AudioClip clipClick;
 
     public AudioSource asMembrana;
     public AudioSource asRiegoSanguineo;
+    public AudioSource asEffectSounds;
 
 
     private void Awake()
@@ -39,12 +41,18 @@ public class ManagerAudioEffect : MonoBehaviour {
         if (isPlay)
         {
             asRiegoSanguineo.clip = clipRiegoSan;
-            asMembrana.loop = true;
-            asMembrana.Play();
+            asRiegoSanguineo.loop = true;
+            asRiegoSanguineo.Play();
         }else
         {
             asRiegoSanguineo.DOFade(1f,1f).SetEase(Ease.OutSine);
         }
+    }
+    public void ReproducirClickButton()
+    {
+        asEffectSounds.Stop();
+        asEffectSounds.clip = clipClick;
+        asEffectSounds.Play();
     }
 
 }
