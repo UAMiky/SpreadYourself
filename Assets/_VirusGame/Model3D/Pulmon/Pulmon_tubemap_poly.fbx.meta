@@ -1,18 +1,25 @@
 fileFormatVersion: 2
-guid: 357db558b63e5754791e73643697a163
-timeCreated: 1517057121
+guid: 48b2011dbbd29654a97463c8e0bf510c
+timeCreated: 1517049268
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Icosphere
-    400000: //RootNode
-    400002: Icosphere
-    2100000: Default_Prototype
-    2300000: Icosphere
-    3300000: Icosphere
-    4300000: Icosphere
+    100000: nariz_poly
+    100002: pulmon_poly
+    100004: //RootNode
+    400000: nariz_poly
+    400002: pulmon_poly
+    400004: //RootNode
+    2100000: nose_lambert15SG1
+    2100002: lambert1
+    2300000: nariz_poly
+    2300002: pulmon_poly
+    3300000: nariz_poly
+    3300002: pulmon_poly
+    4300000: nariz_poly
+    4300002: pulmon_poly
+    9500000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -87,7 +94,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
