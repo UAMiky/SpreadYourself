@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class CellBehaviour : MonoBehaviour
+public class CellBehaviour : Singleton<CellBehaviour>
 {
     [SerializeField]
     CellDefinition definition;
@@ -37,7 +37,7 @@ public class CellBehaviour : MonoBehaviour
 
     #endregion
 
-    void Awake ()
+    protected override void OnSetAsSingletonInstance()
     {
         this.enabled = false;
         this.gameObject.SetActive(false);

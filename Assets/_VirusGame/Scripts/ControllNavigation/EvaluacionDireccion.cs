@@ -20,7 +20,6 @@ public class EvaluacionDireccion : MonoBehaviour {
     private void OnTriggerEnter (Collider other)
     {
         
-        if (other.CompareTag("Player"))
         {
             float menor = 1000f;
             int indexMenor=0;
