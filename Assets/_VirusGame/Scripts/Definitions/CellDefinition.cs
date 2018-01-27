@@ -5,14 +5,48 @@ using UnityEngine;
 [System.Serializable]
 public struct SpawnConfig
 {
+    [SerializeField]
     [Tooltip("Time to wait for the first spawn")]
-    public float firstSpawnTime;
+    private float firstSpawnTime;
 
+    [SerializeField]
     [Tooltip("Time to wait for the second and subsequent spawns")]
-    public float nextSpawnTime;
+    private float nextSpawnTime;
 
+    [SerializeField]
     [Tooltip("Total number of items to spawn")]
-    public int maxSpawnNumber;
+    private int maxSpawnNumber;
+
+    private int itemsLeft;
+    private float timer;
+
+    // Starts this spawner
+    public void Init ()
+    {
+        this.timer = firstSpawnTime;
+        this.itemsLeft = maxSpawnNumber;
+    }
+
+    // Spawns item
+    public GameObject Update (GameObject prefab, float deltaTime, Transform spawnPoint = null)
+    {
+        if (this.itemsLeft <= 0)
+            return null;
+
+        if (this.timer < 0)
+            this.timer += nextSpawnTime;
+        this.timer -= deltaTime;
+
+        if(this.timer < 0)
+        {
+            this.itemsLeft--;
+            return spawnPoint ? 
+                InstanceManager.Instance.InstanceGet(prefab, spawnPoint.position, spawnPoint.rotation) :
+                InstanceManager.Instance.InstanceGet(prefab);
+        }
+
+        return null;
+    }
 }
 
 [CreateAssetMenu]
@@ -20,4 +54,6 @@ public class CellDefinition : ScriptableObject
 {
     public SpawnConfig enemiesSpawnConfig;
     public SpawnConfig clonesSpawnConfig;
+    public CellDefinition exitCell;
+    public int maxExits = 3;
 }

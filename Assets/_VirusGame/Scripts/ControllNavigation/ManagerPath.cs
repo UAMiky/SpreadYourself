@@ -27,7 +27,7 @@ public class ManagerPath : MonoBehaviour {
         {
             for (int x = 0; x < indexCarriles.Length; x++)
             {
-                if(carrilesCompletos[i])
+              
             }
         }
     }

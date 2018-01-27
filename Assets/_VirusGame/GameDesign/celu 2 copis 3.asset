@@ -9,13 +9,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be8d1bb5c73ecae4f9175ceb540263c1, type: 3}
-  m_Name: SampleCellDefinition
+  m_Name: celu 2 copis 3
   m_EditorClassIdentifier: 
   enemiesSpawnConfig:
-    firstSpawnTime: 3
+    firstSpawnTime: 4
     nextSpawnTime: 0.25
-    maxSpawnNumber: 20
+    maxSpawnNumber: 10
   clonesSpawnConfig:
     firstSpawnTime: 1
     nextSpawnTime: 2
-    maxSpawnNumber: 3
+    maxSpawnNumber: 2

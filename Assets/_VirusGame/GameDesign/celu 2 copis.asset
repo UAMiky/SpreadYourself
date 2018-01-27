@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be8d1bb5c73ecae4f9175ceb540263c1, type: 3}
+  m_Name: celu 2 copis
+  m_EditorClassIdentifier: 
+  enemiesSpawnConfig:
+    firstSpawnTime: 4
+    nextSpawnTime: 0.25
+    maxSpawnNumber: 10
+  clonesSpawnConfig:
+    firstSpawnTime: 1
+    nextSpawnTime: 2
+    maxSpawnNumber: 2
