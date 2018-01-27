@@ -16,6 +16,7 @@ public class ButtonStart : MonoBehaviour {
     {
         VRCameraFade.Instance.FadeIn(true);
         ManagerPath.instance.iniciar();
+        PlayerController.Instance.Activate();
         Destroy(gameObject);
     }
 }

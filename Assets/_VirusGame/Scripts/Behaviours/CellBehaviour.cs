@@ -42,31 +42,31 @@ public class CellBehaviour : Singleton<CellBehaviour>
         this.enabled = false;
         this.gameObject.SetActive(false);
         this.GetComponentsInChildren<CellExitBehaviour>(this.Exits);
-	}
-	
-	void Update ()
+    }
+
+    void Update()
     {
         EnemiesUpdate();
         ClonesUpdate();
-	}
+    }
 
     void EnemiesUpdate()
     {
         var newEnemy = definition.enemiesSpawnConfig.Update(this.enemyPrefab, Time.deltaTime);
-        if(newEnemy)
+        if (newEnemy)
         {
             this.Enemies.Add(newEnemy);
 
             // Initialize enemy
             newEnemy.GetComponent<CellEnemyBehaviour>().Activate(this.player, this.cellRadius, this.playerRadius);
-            newEnemy.transform.DOLookAt(Camera.main.transform.position,0.5f);
+            newEnemy.transform.DOLookAt(Camera.main.transform.position, 0.5f);
         }
     }
 
     void ClonesUpdate()
     {
         var newClone = definition.clonesSpawnConfig.Update(this.clonePrefab, Time.deltaTime, this.cloneSpawn);
-        if(newClone)
+        if (newClone)
         {
             this.Clones.Add(newClone);
 
@@ -74,13 +74,14 @@ public class CellBehaviour : Singleton<CellBehaviour>
             newClone.GetComponent<VirusCloneBehaviour>().Activate(this.player);
 
             // Add 1 to score
+            PlayerController.Instance.CloneCreated();
         }
     }
 
-    public void Exit (Transform tweenDestination)
+    public void Exit(Transform tweenDestination)
     {
         // Kill all enemies
-        foreach(var enemy in Enemies)
+        foreach (var enemy in Enemies)
         {
             enemy.GetComponent<CellEnemyBehaviour>().Deactivate();
             InstanceManager.Instance.InstanceReturn(enemy);
@@ -90,10 +91,8 @@ public class CellBehaviour : Singleton<CellBehaviour>
         foreach (var exit in Exits)
             exit.Deactivate();
 
-        
-
         // Move player to exit
-        this.player.DOMove(tweenDestination.position, this.exitTweenTime).OnComplete(() => 
+        this.player.DOMove(tweenDestination.position, this.exitTweenTime).OnComplete(() =>
         {
             //play audio close
             ManagerAudioEffect.instance.ReproducirCerrar();
@@ -106,7 +105,7 @@ public class CellBehaviour : Singleton<CellBehaviour>
             }
 
             var nextCell = this.PlayerExited();
-            if(nextCell)
+            if (nextCell)
             {
                 this.PlayerEntered(this.player, nextCell);
             }
@@ -117,19 +116,20 @@ public class CellBehaviour : Singleton<CellBehaviour>
                 this.player.position = this.playerOriginalPosition;
                 this.player.rotation = this.playerOriginalRotation;
                 this.player.DOTogglePause();
+                PlayerController.Instance.CellExited();
                 this.enabled = false;
             }
         });
     }
 
-    public void PlayerEntered (Transform playerTrans, CellDefinition cell, GameObject enemy = null)
+    public void PlayerEntered(Transform playerTrans, CellDefinition cell, GameObject enemy = null)
     {
         this.definition = cell;
         if (enemy) this.enemyPrefab = enemy;
         this.PlayerEntered(playerTrans);
     }
 
-    public void PlayerEntered (Transform playerTrans)
+    public void PlayerEntered(Transform playerTrans)
     {
         this.Exits.Shuffle();
         int n = Mathf.Min(this.Exits.Count, this.definition.maxExits);
@@ -152,7 +152,7 @@ public class CellBehaviour : Singleton<CellBehaviour>
         this.enabled = true;
     }
 
-    public CellDefinition PlayerExited ()
+    public CellDefinition PlayerExited()
     {
         return this.definition.exitCell;
     }
