@@ -1,5 +1,6 @@
 using UnityEngine;
 using VRStandardAssets.Utils;
+using DG.Tweening;
 
 namespace VRStandardAssets.Examples
 {
@@ -13,6 +14,8 @@ namespace VRStandardAssets.Examples
         [SerializeField] private Material m_DoubleClickedMaterial;         
         [SerializeField] private VRInteractiveItem m_InteractiveItem;
         [SerializeField] private Renderer m_Renderer;
+
+        [SerializeField] private Transform cam;
 
 
         private void Awake ()
@@ -60,6 +63,10 @@ namespace VRStandardAssets.Examples
         {
             Debug.Log("Show click state");
             m_Renderer.material = m_ClickedMaterial;
+
+            
+            cam.DOMove(new Vector3(transform.position.x,transform.position.y+2f,transform.position.z), 4f).SetEase(Ease.InOutSine);
+
         }
 
 
