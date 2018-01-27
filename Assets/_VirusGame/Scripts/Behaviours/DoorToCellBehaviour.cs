@@ -21,5 +21,6 @@ public class DoorToCellBehaviour : MonoBehaviour
     {
         GetComponent<VRInteractiveItem>().OnClick -= OnVRClick;
         CellBehaviour.Instance.PlayerEntered(player, celula);
+        ManagerAudioEffect.instance.ReproducirAbrir();
     }
 }

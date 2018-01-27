@@ -30,6 +30,9 @@ public class CellExitBehaviour : MonoBehaviour
 
     private void OnVRClicked()
     {
+        //playAudio
+        ManagerAudioEffect.instance.ReproducirAbrir();
+
         parent.Exit(tweenPoint ? tweenPoint : transform);
     }
 }

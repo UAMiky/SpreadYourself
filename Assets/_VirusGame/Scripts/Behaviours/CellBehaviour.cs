@@ -90,11 +90,16 @@ public class CellBehaviour : Singleton<CellBehaviour>
         foreach (var exit in Exits)
             exit.Deactivate();
 
+        
+
         // Move player to exit
         this.player.DOMove(tweenDestination.position, this.exitTweenTime).OnComplete(() => 
         {
+            //play audio close
+            ManagerAudioEffect.instance.ReproducirCerrar();
+
             // Kill all clones
-            foreach(var clone in this.Clones)
+            foreach (var clone in this.Clones)
             {
                 clone.GetComponent<VirusCloneBehaviour>().Deactivate();
                 InstanceManager.Instance.InstanceReturn(clone);
