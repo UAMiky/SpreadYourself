@@ -18,6 +18,6 @@ public class VirusCloneBehaviour : MonoBehaviour
 
     public void Deactivate()
     {
-        this.transform.DOComplete();
+        this.transform.DOKill();
     }
 }
