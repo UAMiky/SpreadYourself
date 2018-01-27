@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class InstanceManager : Singleton<InstanceManager, SingletonAutoCreatePolicy>
 {
@@ -70,6 +71,12 @@ public class InstanceManager : Singleton<InstanceManager, SingletonAutoCreatePol
          i_obj.SetActive(false);
       } //endif
    }
+
+    public void ReturnAll (List<GameObject> list)
+    {
+        foreach (var o in list)
+            InstanceReturn(o);
+    }
 
    public void WasDestroyed ( InstanceCopyOf i_copy)
    {

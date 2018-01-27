@@ -28,7 +28,7 @@ public struct SpawnConfig
     }
 
     // Spawns item
-    public GameObject Update (GameObject prefab, float deltaTime)
+    public GameObject Update (GameObject prefab, float deltaTime, Transform spawnPoint = null)
     {
         if (this.itemsLeft <= 0)
             return null;
@@ -40,7 +40,9 @@ public struct SpawnConfig
         if(this.timer < 0)
         {
             this.itemsLeft--;
-            return InstanceManager.Instance.InstanceGet(prefab);
+            return spawnPoint ? 
+                InstanceManager.Instance.InstanceGet(prefab, spawnPoint.position, spawnPoint.rotation) :
+                InstanceManager.Instance.InstanceGet(prefab);
         }
 
         return null;
@@ -53,4 +55,5 @@ public class CellDefinition : ScriptableObject
     public SpawnConfig enemiesSpawnConfig;
     public SpawnConfig clonesSpawnConfig;
     public CellDefinition exitCell;
+    public int maxExits = 3;
 }
