@@ -23,6 +23,7 @@ public class ManagerPath : MonoBehaviour {
 
     public void iniciar()
     {
+        ManagerAudioEffect.instance.ReproducirRiegoSanguineo(true);
         Vector3[] vectorMove = new Vector3[pointsMove.Length];
         for (int i =0; i < pointsMove.Length; i++)
         {

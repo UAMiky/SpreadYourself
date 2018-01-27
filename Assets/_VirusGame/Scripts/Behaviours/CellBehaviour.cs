@@ -112,6 +112,7 @@ public class CellBehaviour : Singleton<CellBehaviour>
             else
             {
                 // Volver al carril
+                
                 this.gameObject.SetActive(false);
                 this.player.position = this.playerOriginalPosition;
                 this.player.rotation = this.playerOriginalRotation;
