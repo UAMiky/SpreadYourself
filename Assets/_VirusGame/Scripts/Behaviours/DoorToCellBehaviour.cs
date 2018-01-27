@@ -33,6 +33,7 @@ public class DoorToCellBehaviour : MonoBehaviour
         if(clickEnabled)
             GetComponent<VRInteractiveItem>().OnClick -= OnVRClick;
 
+        ManagerAudioEffect.instance.ReproducirAbrir();
         this.enabled = false;
     }
 
@@ -43,6 +44,7 @@ public class DoorToCellBehaviour : MonoBehaviour
 
         GetComponent<VRInteractiveItem>().OnClick -= OnVRClick;
         CellBehaviour.Instance.PlayerEntered(player, celula);
+        ManagerAudioEffect.instance.ReproducirAbrir();
         this.enabled = false;
     }
 }

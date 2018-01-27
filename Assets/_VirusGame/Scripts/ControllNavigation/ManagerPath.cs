@@ -21,7 +21,7 @@ public class ManagerPath : MonoBehaviour {
         }
     }
 
-    private void Start()
+    public void iniciar()
     {
         Vector3[] vectorMove = new Vector3[pointsMove.Length];
         for (int i =0; i < pointsMove.Length; i++)
