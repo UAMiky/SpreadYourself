@@ -45,7 +45,7 @@ public class ManagerAudioEffect : MonoBehaviour {
             asRiegoSanguineo.Play();
         }else
         {
-            asRiegoSanguineo.DOFade(1f,1f).SetEase(Ease.OutSine);
+            asRiegoSanguineo.DOFade(0.5f,1f).SetEase(Ease.OutSine);
         }
     }
     public void ReproducirClickButton()
