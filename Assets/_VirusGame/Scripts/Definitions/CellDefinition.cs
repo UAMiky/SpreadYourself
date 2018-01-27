@@ -20,4 +20,5 @@ public class CellDefinition : ScriptableObject
 {
     public SpawnConfig enemiesSpawnConfig;
     public SpawnConfig clonesSpawnConfig;
+    public CellDefinition exitCell;
 }
