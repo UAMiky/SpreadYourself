@@ -59,6 +59,7 @@ public class CellBehaviour : MonoBehaviour
 
             // Initialize enemy
             newEnemy.GetComponent<CellEnemyBehaviour>().Activate(this.player, this.cellRadius, this.playerRadius);
+            newEnemy.transform.DOLookAt(Camera.main.transform.position,0.5f);
         }
     }
 
