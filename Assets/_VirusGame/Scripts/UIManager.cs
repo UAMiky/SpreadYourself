@@ -11,6 +11,8 @@ public class UIManager : Singleton<UIManager>
     public Text clonesText;
     public GameObject startObject;
     public GameObject youLooseObject;
+    public GameObject youWinObject;
+    public GameObject notEnoughObject;
 
     public void GameStarted()
     {
@@ -35,6 +37,19 @@ public class UIManager : Singleton<UIManager>
         if (youLooseObject)
             youLooseObject.SetActive(true);
 
+        CellBehaviour.Instance.PlayerExited();
+        ButtonReload.Instance.gameObject.SetActive(true);
+    }
+
+    internal void YouWin()
+    {
+        int nClones = PlayerController.Instance.nClones;
+        var obj = (nClones >= 30) ? youWinObject : notEnoughObject;
+        if (obj)
+            obj.SetActive(true);
+
+        VRCameraFade.Instance.FadeOut(true);
+        PlayerController.Instance.Deactivate();
         CellBehaviour.Instance.PlayerExited();
         ButtonReload.Instance.gameObject.SetActive(true);
     }

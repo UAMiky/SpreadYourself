@@ -33,10 +33,10 @@ public class PlayerController : Singleton<PlayerController>
     float bodyRecoveryTime = 20;
 
     int _nClones;
-    int nClones
+    public int nClones
     {
         get { return _nClones; }
-        set
+        private set
         {
             _nClones = Mathf.Max(value, 0);
             UIManager.Instance.ClonesUpdated(_nClones);
