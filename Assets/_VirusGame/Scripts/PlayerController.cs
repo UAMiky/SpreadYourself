@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerController : Singleton<PlayerController>
 {
@@ -39,6 +41,12 @@ public class PlayerController : Singleton<PlayerController>
             _nClones = Mathf.Max(value, 0);
             UIManager.Instance.ClonesUpdated(_nClones);
         }
+    }
+
+    internal void Deactivate()
+    {
+        this.shell.enabled = false;
+        this.transform.DOKill();
     }
 
     protected override void OnSetAsSingletonInstance()
@@ -100,7 +108,6 @@ public class PlayerController : Singleton<PlayerController>
 
     private void PlayerDied()
     {
-        // TODO Use last clone ?
-        Debug.Log("DIEE!!!");
+        UIManager.Instance.GameOver();
     }
 }
