@@ -59,7 +59,6 @@ public class CellBehaviour : Singleton<CellBehaviour>
 
             // Initialize enemy
             newEnemy.GetComponent<CellEnemyBehaviour>().Activate(this.player, this.cellRadius, this.playerRadius);
-            newEnemy.transform.DOLookAt(Camera.main.transform.position, 0.5f);
         }
     }
 
@@ -146,6 +145,7 @@ public class CellBehaviour : Singleton<CellBehaviour>
         }
 
         this.gameObject.SetActive(true);
+        PlayerController.Instance.CellEntered();
         this.player.position = this.transform.position;
         this.player.rotation = this.transform.rotation;
         this.definition.enemiesSpawnConfig.Init();

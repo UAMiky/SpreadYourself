@@ -30,6 +30,7 @@ public class CellEnemyBehaviour : MonoBehaviour
         var pos = player.position;
         var dir = Random.onUnitSphere;
 
+        this.transform.DOLookAt(Camera.main.transform.position, 0.5f);
         this.transform.position = pos + dir * cellRadius;
         this.transform.DOMove(pos + dir * playerRadius, this.tweenSpeed).SetSpeedBased().OnComplete(()=>
         {
