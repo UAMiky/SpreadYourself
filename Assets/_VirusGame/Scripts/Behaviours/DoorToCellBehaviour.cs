@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using VRStandardAssets.Utils;
@@ -43,8 +44,13 @@ public class DoorToCellBehaviour : MonoBehaviour
             return;
 
         GetComponent<VRInteractiveItem>().OnClick -= OnVRClick;
-        CellBehaviour.Instance.PlayerEntered(player, celula);
+        CellBehaviour.Instance.PlayerEntered(player, celula, this);
         ManagerAudioEffect.instance.ReproducirAbrir();
         this.enabled = false;
+    }
+
+    public void ExitFromCell()
+    {
+
     }
 }
