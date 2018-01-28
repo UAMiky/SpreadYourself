@@ -1,12 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 using VRStandardAssets.Utils;
 
 [RequireComponent(typeof(VRInteractiveItem))]
 public class DoorToCellBehaviour : MonoBehaviour
 {
     public CellDefinition celula;
+    public Carril carrilSalida;
 
     public bool triggerEnabled = false;
     public bool clickEnabled = true;
@@ -24,17 +27,13 @@ public class DoorToCellBehaviour : MonoBehaviour
 
     private void OnTriggerEnter (Collider other)
     {
-        if (!this.enabled)
+        if (!this.enabled || !triggerEnabled)
             return;
 
-        if(triggerEnabled)
-            CellBehaviour.Instance.PlayerEntered(player, celula);
-
-        if(clickEnabled)
+        if (clickEnabled)
             GetComponent<VRInteractiveItem>().OnClick -= OnVRClick;
 
-        ManagerAudioEffect.instance.ReproducirAbrir();
-        this.enabled = false;
+        DoEnterToCell();
     }
 
     private void OnVRClick()
@@ -43,8 +42,24 @@ public class DoorToCellBehaviour : MonoBehaviour
             return;
 
         GetComponent<VRInteractiveItem>().OnClick -= OnVRClick;
-        CellBehaviour.Instance.PlayerEntered(player, celula);
-        ManagerAudioEffect.instance.ReproducirAbrir();
+        DoEnterToCell();
+    }
+
+    private void DoEnterToCell()
+    {
         this.enabled = false;
+
+        player.DOMove(this.transform.position, 0.5f).OnComplete(()=>
+        {
+            CellBehaviour.Instance.PlayerEntered(player, celula);
+            ManagerAudioEffect.instance.ReproducirAbrir();
+        });
+
+    }
+
+    public void ExitFromCell()
+    {
+        if (carrilSalida.carrill.Count > 0)
+            ManagerPath.instance.NextCarril(carrilSalida);
     }
 }

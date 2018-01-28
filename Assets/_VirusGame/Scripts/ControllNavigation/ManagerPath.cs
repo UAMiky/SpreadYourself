@@ -32,6 +32,14 @@ public class ManagerPath : MonoBehaviour {
         NextCarril(vectorMove);   
     }
 
+    public void NextCarril (Carril carril, float delay = 0)
+    {
+        Vector3[] vectorMove = new Vector3[carril.carrill.Count];
+        for (int i = 0; i < vectorMove.Length; i++)
+            vectorMove[i] = carril.carrill[i].point.position;
+        NextCarril(vectorMove, delay);
+    }
+
   public void NextCarril(Vector3[] nextArrayVector,float delay=0)
     {
         contentCamera.DOPath(nextArrayVector, 10f,PathType.CatmullRom).SetEase(Ease.Linear).SetDelay(delay);

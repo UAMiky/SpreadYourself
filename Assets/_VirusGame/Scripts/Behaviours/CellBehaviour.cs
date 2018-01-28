@@ -28,6 +28,7 @@ public class CellBehaviour : Singleton<CellBehaviour>
 
     #region Internal Vars
 
+    private DoorToCellBehaviour door;
     private Transform player;
     private Vector3 playerOriginalPosition;
     private Quaternion playerOriginalRotation;
@@ -118,14 +119,15 @@ public class CellBehaviour : Singleton<CellBehaviour>
                 this.player.DOTogglePause();
                 PlayerController.Instance.CellExited();
                 this.enabled = false;
+                if (this.door) this.door.ExitFromCell();
             }
         });
     }
 
-    public void PlayerEntered(Transform playerTrans, CellDefinition cell, GameObject enemy = null)
+    public void PlayerEntered(Transform playerTrans, CellDefinition cell, DoorToCellBehaviour door = null)
     {
         this.definition = cell;
-        if (enemy) this.enemyPrefab = enemy;
+        if (door) this.door = door;
         this.PlayerEntered(playerTrans);
     }
 
@@ -135,6 +137,8 @@ public class CellBehaviour : Singleton<CellBehaviour>
         int n = Mathf.Min(this.Exits.Count, this.definition.maxExits);
         for (int i = 0; i < n; i++)
             this.Exits[i].Activate(this);
+        for (int i = n; i < this.Exits.Count; i++)
+            this.Exits[i].Deactivate();
 
         this.player = playerTrans;
         if (this.enabled == false)

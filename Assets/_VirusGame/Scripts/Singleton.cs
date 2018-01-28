@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections;
 
 /// A generic singleton base class for Unity 3D MonoBehaviour objects.
+///
+/// Developed for Drakhar Studio by Miguel Company (aka UAMike)
 /// 
 /// Unity MonoBehaviour objects are special because they should be added to
 /// a game object (either in the editor or by calling AddComponent). This
