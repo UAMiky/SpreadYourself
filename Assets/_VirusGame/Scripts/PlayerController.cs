@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : Singleton<PlayerController>
 {
+    public Renderer shell;
+
     [Header("Energy")]
 
     [SerializeField]
@@ -57,6 +59,7 @@ public class PlayerController : Singleton<PlayerController>
     {
         this.nClones = 0;
         this.currentEnergy = totalEnergy;
+        this.shell.enabled = true;
 
         InvokeRepeating("CloneKilled", bodyRecoveryTime, bodyRecoveryTime);
     }
