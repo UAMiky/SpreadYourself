@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System;
 
 public class ControllerOffset : MonoBehaviour {
 
@@ -58,4 +59,15 @@ public class ControllerOffset : MonoBehaviour {
         }
     }
 
+    public void Deactivate()
+    {
+        this.enabled = false;
+        this.transform.localPosition = Vector3.zero;
+        this.target = Vector3.zero;
+    }
+
+    public void Activate ()
+    {
+        this.enabled = true;
+    }
 }

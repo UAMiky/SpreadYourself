@@ -33,14 +33,7 @@ public class EvaluacionDireccion : MonoBehaviour {
                 }
 
             }            
-            Debug.Log("el index es "+indexMenor);
-            direccionPosition = new Vector3[carriles[indexMenor].carrill.Count];
-            for(int i = 0; i < direccionPosition.Length; i++)
-            {
-                direccionPosition[i] = carriles[indexMenor].carrill[i].point.position;
-            }
-
-            ManagerPath.instance.NextCarril(direccionPosition);
+            ManagerPath.instance.NextCarril(carriles[indexMenor]);
         }       
     }
 

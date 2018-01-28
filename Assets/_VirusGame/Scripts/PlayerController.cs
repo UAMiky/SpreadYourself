@@ -73,6 +73,7 @@ public class PlayerController : Singleton<PlayerController>
 
     public void CellEntered ()
     {
+        GetComponentInChildren<ControllerOffset>().Deactivate();
         this.enabled = false;
         CancelInvoke("CloneKilled");
     }
@@ -81,6 +82,7 @@ public class PlayerController : Singleton<PlayerController>
     {
         InvokeRepeating("CloneKilled", bodyRecoveryTime, bodyRecoveryTime);
         this.enabled = true;
+        GetComponentInChildren<ControllerOffset>().Activate();
     }
 
     public void CloneCreated ()
