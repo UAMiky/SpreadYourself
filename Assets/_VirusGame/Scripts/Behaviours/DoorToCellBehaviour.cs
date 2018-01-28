@@ -8,6 +8,7 @@ using VRStandardAssets.Utils;
 public class DoorToCellBehaviour : MonoBehaviour
 {
     public CellDefinition celula;
+    public Carril carrilSalida;
 
     public bool triggerEnabled = false;
     public bool clickEnabled = true;
@@ -51,6 +52,7 @@ public class DoorToCellBehaviour : MonoBehaviour
 
     public void ExitFromCell()
     {
-
+        if (carrilSalida.carrill.Count > 0)
+            ManagerPath.instance.NextCarril(carrilSalida);
     }
 }
