@@ -20,6 +20,7 @@ public class ButtonStart : MonoBehaviour {
         ManagerPath.instance.iniciar();
         PlayerController.Instance.Activate();
         ManagerAudioEffect.instance.ReproducirClickButton();
+        UIManager.Instance.GameStarted();
         Destroy(gameObject);
     }
 }
