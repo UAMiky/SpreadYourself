@@ -7,6 +7,12 @@ public class UIManager : Singleton<UIManager>
 {
     public Image energyBar;
     public Text clonesText;
+    public GameObject startObject;
+
+    public void GameStarted()
+    {
+        startObject.SetActive(false);
+    }
 
     public void EnergyUpdated (float current, float total)
     {

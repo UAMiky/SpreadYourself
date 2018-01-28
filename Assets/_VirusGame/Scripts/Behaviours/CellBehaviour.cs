@@ -137,6 +137,8 @@ public class CellBehaviour : Singleton<CellBehaviour>
         int n = Mathf.Min(this.Exits.Count, this.definition.maxExits);
         for (int i = 0; i < n; i++)
             this.Exits[i].Activate(this);
+        for (int i = n; i < this.Exits.Count; i++)
+            this.Exits[i].Deactivate();
 
         this.player = playerTrans;
         if (this.enabled == false)

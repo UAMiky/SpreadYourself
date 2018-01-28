@@ -20,4 +20,4 @@ MonoBehaviour:
     nextSpawnTime: 2
     maxSpawnNumber: 1
   exitCell: {fileID: 0}
-  maxExits: 3
+  maxExits: 8
