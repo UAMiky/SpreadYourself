@@ -13,6 +13,7 @@ public class UIManager : Singleton<UIManager>
     public GameObject youLooseObject;
     public GameObject youWinObject;
     public GameObject notEnoughObject;
+    public GameObject globalMesh;
 
     public void GameStarted()
     {
@@ -36,7 +37,7 @@ public class UIManager : Singleton<UIManager>
 
         if (youLooseObject)
             youLooseObject.SetActive(true);
-
+        globalMesh.SetActive(false);
         CellBehaviour.Instance.PlayerExited();
         ButtonReload.Instance.gameObject.SetActive(true);
     }
@@ -48,6 +49,7 @@ public class UIManager : Singleton<UIManager>
         if (obj)
             obj.SetActive(true);
 
+        globalMesh.SetActive(false);
         VRCameraFade.Instance.FadeOut(true);
         PlayerController.Instance.Deactivate();
         CellBehaviour.Instance.PlayerExited();
