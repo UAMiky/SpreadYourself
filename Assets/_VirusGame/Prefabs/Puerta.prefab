@@ -197,8 +197,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 2, z: 1.3}
+  m_Center: {x: 2, y: 0, z: 0.3}
 --- !u!82 &82325711849987528
 AudioSource:
   m_ObjectHideFlags: 1
@@ -291,6 +291,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   celula: {fileID: 11400000, guid: 8b2cbd24c421f9f4f8ce5e7b71cb3bbf, type: 2}
+  carrilSalida:
+    carril: Carril
+    carrill: []
   triggerEnabled: 0
   clickEnabled: 1
 --- !u!114 &114950168030981024
